@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Purchase Success — Pyzo</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05020a;
+    --pink:#ff00cc;
+    --pink-2:#ff66ff;
+    --muted:#9a9aa0;
+    --panel: rgba(255,255,255,0.02);
+  }
+  html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#fff;background:var(--bg);}
+  .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;box-sizing:border-box;}
+  .card{
+    width:100%;max-width:1100px;background:
+      radial-gradient(800px 350px at 90% 10%, rgba(255,0,204,0.03), transparent 10%),
+      linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+    border-radius:20px;padding:40px;box-sizing:border-box;border:1px solid rgba(255,255,255,0.03);
+    box-shadow:0 20px 60px rgba(0,0,0,0.7);position:relative;overflow:hidden;
+  }
+
+
+  .card::before{
+    content:"";position:absolute;inset:0;background-image:url('assets/hero-bg.png');background-size:cover;background-position:center;opacity:0.12;mix-blend-mode:overlay;pointer-events:none;
+  }
+
+  .success-row{display:flex;gap:28px;align-items:center;z-index:2;position:relative;}
+  .left{
+    flex:1;
+    min-width:280px;
+  }
+  .right{
+    width:420px;
+    max-width:45%;
+    min-width:260px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+
+  .art-box{
+    border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);
+    padding:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:300px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    overflow:hidden;
+  }
+  .art-box img{ max-width:100%; max-height:100%; display:block; border-radius:8px; }
+
+  .success-badge{
+    display:inline-block;padding:10px 16px;border-radius:999px;background:linear-gradient(90deg,var(--pink),var(--pink-2));color:#111;font-weight:800;margin-bottom:18px;box-shadow:0 12px 30px rgba(255,0,204,0.12);
+  }
+
+  h1{ font-size:40px;margin:0 0 10px 0; letter-spacing:-0.6px; font-weight:900; color:#fff; }
+  p.lead{ margin:0 0 20px 0; color:var(--muted); max-width:720px; line-height:1.6; }
+
+
+  .info{
+    background:var(--panel);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.02);
+  }
+  .info .row{ display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:15px;color:var(--muted); }
+  .info .row strong{ color:#fff;font-weight:700; }
+
+  .big-amount{
+    font-size:28px;font-weight:900;color:var(--pink-2);margin-top:6px;
+  }
+
+  .actions{ display:flex;gap:12px; margin-top:12px; align-items:center; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;font-weight:800;text-decoration:none;border:none;cursor:pointer;
+  }
+  .btn.primary{
+    background:linear-gradient(90deg,var(--pink),var(--pink-2));color:#111;box-shadow:0 14px 30px rgba(255,0,204,0.12);
+  }
+  .btn.ghost{
+    background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);
+  }
+
+
+  .note{ font-size:13px;color:var(--muted); margin-top:8px; }
+
+  @media (max-width:980px){
+    .success-row{flex-direction:column;}
+    .right{width:100%;max-width:none;}
+    .art-box{height:220px;}
+  }
+  @media (max-width:520px){
+    h1{font-size:28px;}
+    .card{padding:20px;}
+    .art-box{height:180px;padding:14px;}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="main" aria-labelledby="success-title">
+      <div class="success-row">
+        <div class="left">
+          <span class="success-badge" aria-hidden="true">Purchase Complete</span>
+          <h1 id="success-title">Thank you — Your order was successful</h1>
+          <p class="lead">Your purchase has been completed and the item is ready. Check the details on the right. If you need anything else, return to our catalog to browse more products.</p>
+
+          <div style="display:flex;gap:12px;margin-top:18px;align-items:center;">
+            <a class="btn primary" href="./products.html" role="button" aria-label="Browse more products">Browse Products</a>
+            <button class="btn ghost" onclick="window.print()" aria-label="Print receipt">Print Receipt</button>
+          </div>
+
+          <p class="note">Note: This page is an order confirmation. Keep this window open or save the receipt for your records.</p>
+        </div>
+
+        <div class="right">
+
+          <div class="art-box" aria-hidden="true">
+
+            <img src="assets/success-art.png" alt="Order illustration (replace with your PNG)">
+          </div>
+
+
+          <div class="info" aria-label="Order details">
+            <div class="row"><span>Order ID</span><strong id="order-id">#PX-000123</strong></div>
+            <div class="row"><span>Item</span><strong id="order-item">Seliware — 7 Days</strong></div>
+            <div class="row"><span>Delivery</span><strong id="order-delivery">Automatic</strong></div>
+            <div class="row"><span>Total</span><strong class="big-amount" id="order-amount">$3.99</strong></div>
+            <div style="height:8px"></div>
+            <div class="row" style="font-size:13px;color:var(--muted)"><span>Placed</span><span id="order-date">—</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+
+  (function(){
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get('order') || 'PX-' + Math.floor(Math.random()*900000 + 100000);
+    const item = params.get('item') || 'idk it is for design';
+    const total = params.get('total') || 'idk it is for design';
+    const date = new Date().toLocaleString();
+
+    document.getElementById('order-id').textContent = '#' + id;
+    document.getElementById('order-item').textContent = item;
+    document.getElementById('order-amount').textContent = total;
+    document.getElementById('order-date').textContent = date;
+
+
+    const img = document.querySelector('.art-box img');
+
+    img.onerror = function(){ this.style.opacity = 0.0; this.alt = 'Illustration not available'; }
+  })();
+</script>
+</body>
+</html>
